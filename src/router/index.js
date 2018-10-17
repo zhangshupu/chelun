@@ -21,7 +21,6 @@ const CarModel = () =>
 Vue.use(Router)
 
 let router = new Router({
-  mode: 'history',
   routes: [{
     path: '/index',
     name: 'Index',
