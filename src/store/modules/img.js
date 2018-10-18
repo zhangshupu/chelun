@@ -4,6 +4,11 @@ const state = {
   imgList: [], //图片列表的数据
   pullIsShow: false, //图片列表页面是否显示
   ImageID: 0, //图片的id
+  query: {
+    CarID: '',
+    ColorID: '',
+    SerialID: ''
+  },
   page: 1, //上拉加载更多数据
   isFetch: false, //节流
   swiperIsShow: false, //轮播图是否显示
@@ -15,6 +20,18 @@ const mutations = {
     store.imgData = payload;
     store.pullIsShow = false;
     store.swiperIsShow = false;
+  },
+  // 更改colorid
+  changeColorId(store,payload){
+    store.query.ColorID=payload
+  },
+  // 更改CarID
+  changeCarID(store,payload){
+    store.query.CarID=payload
+  },
+  // 更改SerialID
+  changeSerialID(store,payload){
+    store.query.SerialID=payload
   },
   throttle(store, payload) {
     store.isFetch = false;
@@ -45,7 +62,7 @@ const mutations = {
     store.swiperInd = payload;
   },
   SwiperIsShow(store, payload) {
-    store.swiperInd=payload
+    store.swiperInd = payload
     store.swiperIsShow = true;
     store.pullIsShow = false;
   }
@@ -54,7 +71,9 @@ const actions = {
   getImgData({
     commit
   }, payload) {
-    api.getImgData(payload).then(res => {
+    commit
+    commit('changeSerialID',payload)
+    api.getImgData(state.query).then(res => {
       commit('updataImgData', res.data)
     })
   },

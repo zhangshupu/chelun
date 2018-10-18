@@ -29,8 +29,7 @@
   export default {
     data() {
       return {
-        SerialID: '',
-        query: '',
+        SerialID: ''
       }
     },
     computed: {
@@ -46,7 +45,6 @@
     },
     mounted() {
       this.SerialID = this.$router.history.current.query.SerialID;
-      this.query = this.$router.history.current.query
       // 获取地址栏参数
       this.getDetailsData(this.SerialID)
     },
@@ -55,15 +53,13 @@
         getDetailsData: 'details/getDetailsData',
       }),
       ...mapMutations({
-        clickTable: 'details/changeShow_index'
+        clickTable: 'details/changeShow_index',
+        changeCarID: 'img/changeCarID'
       }),
       clickCar(CarID) {
         _hmt.push(['_trackEvent', '汽车报价', 'tap', '车款选择']);
-        this.query.CarID = CarID;
-        this.$router.push({
-          path: '/img',
-          query: this.query
-        })
+        this.changeCarID(CarID)
+        this.$router.go(-1)
       }
     }
   }

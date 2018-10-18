@@ -57,8 +57,8 @@
       })
     },
     mounted() {
-      this.query = this.$router.history.current.query
-      this.getImgData(this.query)
+      this.query = this.$router.history.current.query;
+      this.getImgData(this.$router.history.current.query.SerialID)
     },
     updated() {
       lazyLoad('.main')

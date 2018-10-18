@@ -77,7 +77,9 @@ export default {
   getImgData: (obj) => {
     let query = '';
     for (const key in obj) {
-      query += `&${key}=${obj[key]}`
+      if (obj[key] != '') {
+        query += `&${key}=${obj[key]}`
+      }
     }
     query = query.slice(1)
     return sendRequest(`/v2-car-getImageList.html?${query}`)

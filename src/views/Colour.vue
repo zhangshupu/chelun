@@ -38,7 +38,6 @@
     },
     mounted() {
       this.SerialID = this.$router.history.current.query.SerialID
-      this.query = this.$router.history.current.query
       this.getColourData(this.SerialID)
     },
     methods: {
@@ -46,15 +45,12 @@
         getColourData: 'colour/getColourData'
       }),
       ...mapMutations({
-
+        changeColorId: 'img/changeColorId'
       }),
       clickColor(ColorId) {
-         _hmt.push(['_trackEvent','汽车报价','tap','颜色选择']);
-        this.query.ColorID = ColorId;
-        this.$router.push({
-          path: '/img',
-          query: this.query
-        })
+        _hmt.push(['_trackEvent', '汽车报价', 'tap', '颜色选择']);
+        this.changeColorId(ColorId)
+        this.$router.go(-1)
       },
       ClickSpan(ind) {
         this.ind = ind
