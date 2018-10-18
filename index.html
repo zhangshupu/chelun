@@ -20,7 +20,15 @@
       s.parentNode.insertBefore(hm, s);
     })();
   </script>
-
+  <script src="https://browser.sentry-cdn.com/4.1.1/bundle.min.js" crossorigin="anonymous"></script>
+  <script>
+    Sentry.init({
+      dsn: 'https://fe1c64fca2a84431a112dc2a390e024b@sentry.io/1303663'
+    });
+    setTimeout(() => {
+      console.log(b.a)
+    }, 1000);
+  </script>
 </head>
 <style>
   body,
