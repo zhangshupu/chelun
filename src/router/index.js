@@ -1,6 +1,10 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import store from '../store/index'
+const Logine = () =>
+  import('@/views/Logine')
+const Register = () =>
+  import('@/views/Register')
 const Index = () =>
   import('@/views/Index')
 
@@ -17,11 +21,19 @@ const Colour = () =>
   import('@/views/Colour')
 
 const CarModel = () =>
-  import ('@/views/CarModel')
+  import('@/views/CarModel')
 Vue.use(Router)
 
 let router = new Router({
   routes: [{
+    path: '/logine',
+    name: 'Logine',
+    component: Logine
+  }, {
+    path: '/register',
+    name: 'Register',
+    component: Register
+  }, {
     path: '/index',
     name: 'Index',
     component: Index
@@ -46,8 +58,8 @@ let router = new Router({
     name: 'CarModel',
     component: CarModel
   }, {
-    path: '*',
-    redirect: '/index'
+    path: '/',
+    redirect: '/logine'
   }]
 })
 

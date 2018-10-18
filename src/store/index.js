@@ -1,11 +1,11 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
+import logine from './modules/logine'
 import index from './modules/index';
 import details from './modules/details';
 import Logger from 'vuex/dist/logger';
 import inquiry from './modules/inquiry';
 import img from './modules/img';
-// import carmodel from './modules/carmodel';
 import colour from './modules/colour'
 Vue.use(Vuex);
 export default new Vuex.Store({
@@ -18,11 +18,11 @@ export default new Vuex.Store({
     }
   },
   modules: {
+    logine,
     index,
     details,
     inquiry,
     img,
-    // carmodel,
     colour
   },
   plugins: [

@@ -80,7 +80,6 @@ export default {
       query += `&${key}=${obj[key]}`
     }
     query = query.slice(1)
-    console.log(query)
     return sendRequest(`/v2-car-getImageList.html?${query}`)
 
   },

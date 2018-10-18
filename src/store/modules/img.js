@@ -62,9 +62,7 @@ const actions = {
     commit
   }, payload) {
     commit('throttle');
-    console.log(state.page)
     api.getImgList([payload, state.ImageID, state.page]).then(res => {
-      console.log(res.data.List)
       commit('updataImgList', res.data.List)
     })
   }

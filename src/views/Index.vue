@@ -108,7 +108,6 @@
       },
       // 点击车系
       click_item(ind) {
-        console.log(ind)
         this.getMakeList(ind)
       },
       // 求右边框手指按下时距离屏幕左边的距离

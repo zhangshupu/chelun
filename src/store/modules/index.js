@@ -10,7 +10,6 @@ const mutations = {
     state.BrandList = payload
   },
   updataMakeList(state, payload) {
-    console.log(payload)
     state.MakeList = payload;
     state.isRightShow = true;
   },
@@ -34,7 +33,6 @@ const actions = {
           obj[item.Spelling.slice(0, 1)].push(item)
         }
       });
-      console.log(obj)
       commit('updateBrandList', obj)
     })
   },
