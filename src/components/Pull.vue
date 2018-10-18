@@ -1,8 +1,8 @@
 <template>
   <div class="pullbox" @scroll="scrollPage()" ref="pullbox">
-    <div ref="box">
-      <li v-for="(item,index) in imgList" :key="index">
-        <img :src="item.Url.replace('{0}',item.HighSize)" @click="clickImg(index)" alt="">
+    <div ref="box" class="box">
+      <li v-for="(item,index) in imgList" :key="index" class="li">
+        <img :data-src="item.Url.replace('{0}',item.HighSize)" @click="clickImg(index)" alt="">
       </li>
     </div>
   </div>
@@ -14,6 +14,9 @@
     mapMutations,
     mapActions
   } from 'vuex'
+  import {
+    lazyLoad
+  } from '../utils/lazyLoad.js'
   export default {
     computed: {
       ...mapState({
@@ -26,12 +29,15 @@
         this.getImgList(this.$router.history.current.query.SerialID)
       }
     },
+    updated() {
+      lazyLoad('.box')
+    },
     methods: {
       ...mapActions({
         getImgList: 'img/getImgList'
       }),
       ...mapMutations({
-        clickImg:'img/SwiperIsShow'
+        clickImg: 'img/SwiperIsShow'
       }),
       scrollPage() {
         let height = window.innerHeight;

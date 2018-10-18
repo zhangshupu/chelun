@@ -14,7 +14,7 @@
           <p>{{item.Name}}</p>
           <span>{{item.Count}}></span>
         </div>
-        <li v-for="(items,ind) in item.List" :key="ind" class="li">
+        <li v-for="(items,ind) in item.List" :key="ind">
           <img :data-src="items.Url.replace('{0}',items.LowSize)" @click="clickImg([ind,item.Count,item.Id])" alt="">
         </li>
       </ul>

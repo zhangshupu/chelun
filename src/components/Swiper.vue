@@ -2,7 +2,7 @@
   <div class="swiperBox" @click="changeSwiperIsShow($event)">
     <swiper :options="swiperOption" class="swiper" ref="mySwiper">
       <swiper-slide v-for="(item,index) in imgList" :key="index">
-        <img :src="item.Url.replace('{0}',item.HighSize)">
+        <img :data-src="item.Url.replace('{0}',item.HighSize)">
       </swiper-slide>
     </swiper>
     <div class="paginationHide">
@@ -16,7 +16,10 @@
   import {
     swiper,
     swiperSlide
-  } from 'vue-awesome-swiper'
+  } from 'vue-awesome-swiper';
+  import {
+    lazyLoad
+  } from '../utils/lazyLoad.js'
   import {
     mapState,
     mapMutations,
@@ -28,6 +31,9 @@
         this.getImgList(this.$router.history.current.query.SerialID);
       }
       this.swiper.slideTo(this.swiperInd, 1000, false);
+    },
+    updated() {
+      lazyLoad('.swiper')
     },
     computed: {
       swiperOption() {
