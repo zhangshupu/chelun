@@ -108,6 +108,7 @@
       },
       // 点击车系
       click_item(ind) {
+        _hmt.push(['_trackEvent','汽车报价','tap','品牌点击']);
         this.getMakeList(ind)
       },
       // 求右边框手指按下时距离屏幕左边的距离

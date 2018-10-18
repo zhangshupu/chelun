@@ -49,6 +49,7 @@
 
       }),
       clickColor(ColorId) {
+         _hmt.push(['_trackEvent','汽车报价','tap','颜色选择']);
         this.query.ColorID = ColorId;
         this.$router.push({
           path: '/img',

@@ -58,6 +58,7 @@
         clickTable: 'details/changeShow_index'
       }),
       clickCar(CarID) {
+        _hmt.push(['_trackEvent', '汽车报价', 'tap', '车款选择']);
         this.query.CarID = CarID;
         this.$router.push({
           path: '/img',
