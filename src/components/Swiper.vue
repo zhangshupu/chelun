@@ -36,7 +36,7 @@
           on: {
             slideChange: function () {
               that.changeSwiperInd(this.activeIndex)
-              if (this.activeIndex == that.imgList.lenght) {
+              if (this.activeIndex == that.imgList.length - 2) {
                 that.getImgList(that.$router.history.current.query.SerialID)
               }
             },
@@ -62,12 +62,14 @@
       }),
       ...mapMutations({
         changeSwiperInd: 'img/changeSwiperInd',
-        changeSwiperIsShow: 'img/changeSwiperIsShow'
-      })
-    },
-    changeSwiperIsShow(e) {
-      if (e.target == e.currentTarget) {
-        this.changeSwiperIsShow()
+        changeSwiperIsShow1: 'img/changeSwiperIsShow'
+      }),
+      changeSwiperIsShow(e) {
+        console.log(e.target)
+        console.log(e.currentTarget)
+        if (e.target == e.currentTarget) {
+          this.changeSwiperIsShow1()
+        }
       }
     }
   }
@@ -84,7 +86,14 @@
     position: absolute;
     top: 50%;
     left: 0;
-    transform: translateY(-50%)
+    transform: translateY(-50%);
+    -webkit-perspective: 3000;
+    -webkit-backface-visibility: hidden;
+  }
+
+  .swiper-wrapper {
+    -webkit-perspective: 3000;
+    -webkit-backface-visibility: hidden;
   }
 
   .swiper-container {
@@ -94,6 +103,8 @@
     list-style: none;
     padding: 0;
     z-index: 1;
+    -webkit-perspective: 3000;
+    -webkit-backface-visibility: hidden;
   }
 
   .paginationHide {
