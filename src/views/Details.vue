@@ -7,11 +7,11 @@
       </router-link>
       <div class="info">
         <ul>
-          <li>{{detailsData.market_attribute.dealer_price}}</li>
-          <li>指导价：{{detailsData.market_attribute.official_refer_price}}</li>
+          <li>{{detailsData.market_attribute?detailsData.market_attribute.dealer_price:''}}</li>
+          <li>指导价：{{detailsData.market_attribute? detailsData.market_attribute.official_refer_price:''}}</li>
         </ul>
-        <router-link :to="{path:'/inquiry',query:{carId:item[0].car_id}}" tag="button" v-for="(item,key,index) in list"
-          :key="index" v-if="index==0">询问低价</router-link>
+        <router-link :to="{path:'/inquiry',query:{carId:item[0].car_id,SerialID:detailsData.SerialID}}" tag="button"
+          v-for="(item,key,index) in list" :key="index" v-if="index==0">询问低价</router-link>
       </div>
       <div class='table'>
         <span v-for="(item,index) in yearList" :key="index" @click="clickTable([index,item])" :class="show_index==index?'active':''">{{item}}</span>
@@ -20,7 +20,7 @@
         <div class="list_item" v-for="(item,key,index) in list" :key="index">
           <p>{{key}}</p>
           <div v-for="(items,ind) in item" :key="ind" class="item_box">
-            <h2>{{items.car_name}}</h2>
+            <h2>{{items.market_attribute.year}}款 {{items.car_name}}</h2>
             <h3>{{items.horse_power}}马力{{items.gear_num}}档</h3>
             <p>
               指导价

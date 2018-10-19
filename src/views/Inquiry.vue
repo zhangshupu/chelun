@@ -4,11 +4,12 @@
       可向多个商家咨询最低价，商家及时回复<em>?</em>
     </header>
     <div class="content">
-      <div class="row">
-        <img src="http://img2.bitautoimg.com/autoalbum/files/20180802/883/0255378836_3.jpg" alt="">
+      <div class="row" @click="clickRow()">
+        <img :src="[inquiryData.details?inquiryData.details.serial.Picture:'']" alt="">
         <div class="center">
-          <h3>奥迪A4L</h3>
-          <p>2018款 30周年版 30 TFSL 进取版</p>
+          <h3>{{inquiryData.details?inquiryData.details.serial.AliasName:''}}</h3>
+          <p>{{inquiryData.details? inquiryData.details.market_attribute.year:''}}款
+            {{inquiryData.details?inquiryData.details.car_name:''}}</p>
         </div>
         <div class="left">
           ›
@@ -75,16 +76,24 @@
   } from 'vuex'
   import City from '../components/City'
   export default {
+    data() {
+      return {
+        SerialID: ''
+      }
+    },
     computed: {
       ...mapState({
         inquiryData: store => store.inquiry.inquiryData,
         cityName: store => store.inquiry.cityName,
-        cityIsShow: store => store.inquiry.cityIsShow
+        cityIsShow: store => store.inquiry.cityIsShow,
+        carId: store => store.img.query.CarID
       })
     },
 
     mounted() {
-      let carId = this.$router.history.current.query.carId
+      let carId = this.carId || this.$router.history.current.query.carId;
+      console.log(carId)
+      this.SerialID = this.$router.history.current.query.SerialID
       this.getInquiryData(carId);
       this.getCityList()
     },
@@ -106,6 +115,15 @@
           this.$refs.item_li[ind].className = 'active'
         }
       },
+      clickRow() {
+        console.log(1)
+        this.$router.push({
+          path: '/CarModel',
+          query: {
+            SerialID: this.SerialID
+          }
+        })
+      }
     }
   }
 </script>
@@ -255,6 +273,7 @@
         border-bottom: 1px solid #eee;
         box-sizing: border-box;
         color: #000;
+
         input {
           font-size: .32rem;
           padding-right: .2rem;
@@ -267,7 +286,8 @@
           outline: none;
           -webkit-appearance: none;
         }
-        span:last-child{
+
+        span:last-child {
           background: #eee;
           padding: .1rem .06rem;
           color: #999;

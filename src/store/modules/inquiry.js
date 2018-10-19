@@ -12,8 +12,8 @@ const mutations = {
   updataInquiry(store, payload) {
     store.cityName = payload[0];
     store.inquiryData = payload[1]
-    store.cityIsShow=false;
-    store.UrbanIsShow=false;
+    store.cityIsShow = false;
+    store.UrbanIsShow = false;
   },
   updataCityList(store, payload) {
     store.cityList = payload;

@@ -7,7 +7,7 @@
       <div class="list_item" v-for="(item,key,index) in list" :key="index">
         <p>{{key}}</p>
         <div @click="clickCar(items.car_id)" class="item_box" v-for="(items,ind) in item" :key="ind">
-          <h2>{{items.car_name}}</h2>
+          <h2>{{items.market_attribute.year}}款 {{items.car_name}}</h2>
           <h3>{{items.horse_power}}马力{{items.gear_num}}档</h3>
           <p>
             指导价
